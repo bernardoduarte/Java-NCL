@@ -15,11 +15,13 @@ public class Item extends StyleElement{
 	private Attr focusIndex;
 	
 	public Item(Document DOM, String id){
-		super(DOM, "item");
+		super(DOM, StyleElementTag.ITEM);
 		this.id.setValue(id);
 		this.element.setAttributeNode(this.id);
+		this.element.setIdAttributeNode(this.id, true);
 	}
 	
+	@Override
 	protected void createAllAttributes(){
 		this.id = DOM.createAttribute("id");
 		this.top = DOM.createAttribute("top");

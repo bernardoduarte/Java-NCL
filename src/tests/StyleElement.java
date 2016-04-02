@@ -8,9 +8,9 @@ public abstract class StyleElement {
 	protected Document DOM;
 	protected Element element;
 	
-	public StyleElement(Document DOM, String tagName){
+	public StyleElement(Document DOM, StyleElementTag tag){
 		this.DOM = DOM;
-		this.element = DOM.createElement(tagName);
+		this.element = DOM.createElement(StyleElementTag.getTagOf(tag));
 		createAllAttributes();
 	}
 	

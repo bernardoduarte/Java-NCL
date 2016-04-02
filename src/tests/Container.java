@@ -14,31 +14,35 @@ public class Container extends StyleElement{
 	private Attr type;
 	private Attr focusIndex;
 	
-	private LinkedList<Element> children = new LinkedList<Element>(); 
+	private Format format;
+	
+	private LinkedList<StyleElement> children = new LinkedList<StyleElement>(); 
 	
 	public Container(Document DOM, String id){
-		super(DOM, "container");
+		super(DOM, StyleElementTag.CONTAINER);
 		this.id.setValue(id);
 		this.element.setAttributeNode(this.id);
+		this.element.setIdAttributeNode(this.id, true);
 	}
 	
+	@Override
 	protected void createAllAttributes(){
 		this.id = DOM.createAttribute("id");
 		this.type = DOM.createAttribute("type");
 		this.focusIndex = DOM.createAttribute("focusIndex");
 	}
 	
-	public void appendChild(Element newChild){
+	public void appendChild(StyleElement newChild){
 		boolean hasChild = false;
-		for(Element currentChild: children){
+		for(StyleElement currentChild: children){
 			if(currentChild == newChild){
-				System.out.println("Child "+newChild.getTagName()+" "+newChild.getAttribute("id")+" Already Exists.");
+				System.out.println("Child "+newChild.getElement().getTagName()+" "+newChild.getElement().getAttribute("id")+" Already Exists.");
 				hasChild = true;
 			}
 		}
 		if(!hasChild){
 			children.push(newChild);
-			this.element.appendChild(newChild);
+			this.element.appendChild(newChild.getElement());
 			/*if(newChild.hasChildNodes()){
 				NodeList nodeList = newChild.getChildNodes();
 				for(int index = 0; index < nodeList.getLength(); index++){
@@ -59,8 +63,8 @@ public class Container extends StyleElement{
 		return this.id.getValue();
 	}
 	
-	public void setType(String type){
-		this.type.setValue(type);
+	public void setType(ContainerLayout type){
+		this.type.setValue(ContainerLayout.getLayoutOf(type));
 		this.element.setAttributeNode(this.type);
 	}
 	
@@ -75,6 +79,15 @@ public class Container extends StyleElement{
 	
 	public int getFocusIndex(){
 		return Integer.parseInt(this.focusIndex.getValue());
+	}
+	
+	public void setFormat(Format format){
+		this.format = format;
+		this.appendChild(this.format);
+	}
+	
+	public Format getFormat(){
+		return this.format;
 	}
 
 }

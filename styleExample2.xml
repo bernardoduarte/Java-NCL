@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<container id="foo">
-<item height="195" id="A" left="100" top="0" width="260"/>
-<item height="195" id="B" width="260"/>
-<item height="195" id="C" width="260"/>
-<spatialConstraint direction="horizontal" id="dist1" offset="10" type="distribute">
-<bind component="A" interface="right"/>
-<bind component="B" interface="right"/>
-<bind component="C" interface="right"/>
-</spatialConstraint>
-<spatialConstraint id="align1" type="align">
-<bind component="A" interface="bottom"/>
-<bind component="B" interface="top"/>
-</spatialConstraint>
-<spatialConstraint id="align2" type="align">
-<bind component="B" interface="top"/>
-<bind component="C" interface="bottom"/>
-</spatialConstraint>
-</container>
+<layout id="firstLayout">
+  <head/>
+  <body id="firstBody">
+    <container id="foo">
+      <item height="195" id="A" left="100" top="0" width="260"/>
+      <item height="195" id="B" width="260"/>
+      <item height="195" id="C" width="260"/>
+      <spatialConstraint direction="horizontal" id="dist1" offset="10" type="distribute">
+        <bind component="A" interface="right"/>
+        <bind component="B" interface="right"/>
+        <bind component="C" interface="right"/>
+      </spatialConstraint>
+      <spatialConstraint id="align1" type="align">
+        <bind component="A" interface="bottom"/>
+        <bind component="B" interface="top"/>
+      </spatialConstraint>
+      <spatialConstraint id="align2" type="align">
+        <bind component="B" interface="top"/>
+        <bind component="C" interface="bottom"/>
+      </spatialConstraint>
+    </container>
+  </body>
+</layout>

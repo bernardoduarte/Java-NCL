@@ -13,9 +13,10 @@ public class Bind extends StyleElement{
 	private Attr bindInterface;
 	
 	public Bind(Document DOM){
-		super(DOM, "bind");
+		super(DOM, StyleElementTag.BIND);
 	}
 	
+	@Override
 	protected void createAllAttributes(){
 		this.role = DOM.createAttribute("role");
 		this.component = DOM.createAttribute("component");

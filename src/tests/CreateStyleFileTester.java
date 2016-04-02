@@ -19,9 +19,19 @@ public class CreateStyleFileTester {
 	 */
 	
 	public static void Listing1(Document doc){
-		Container container = new Container(doc, "foo");
+		Layout layout = new Layout(doc, "firstLayout");
 
-		doc.appendChild(container.getElement());
+		doc.appendChild(layout.getElement());
+		
+		Head head = new Head(doc);
+		Body body = new Body(doc, "firstBody");
+		
+		layout.setHead(head);
+		layout.setBody(body);
+		
+		Container container = new Container(doc, "foo");
+		
+		body.appendChild(container);
 
 		Item itemA = new Item(doc, "A");
 		itemA.setTop(0);
@@ -76,13 +86,13 @@ public class CreateStyleFileTester {
 		bind7.setInterface("bottom");
 		align2.appendBinding(bind7);
 
-		container.appendChild(itemA.getElement());
-		container.appendChild(itemB.getElement());
-		container.appendChild(itemC.getElement());
+		container.appendChild(itemA);
+		container.appendChild(itemB);
+		container.appendChild(itemC);
 
-		container.appendChild(dist1.getElement());
-		container.appendChild(align1.getElement());
-		container.appendChild(align2.getElement());
+		container.appendChild(dist1);
+		container.appendChild(align1);
+		container.appendChild(align2);
 	}
 
 	public static void main(String[] args) {
@@ -101,6 +111,7 @@ public class CreateStyleFileTester {
 			Transformer transformer =
 			transformerFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File(".\\styleExample2.xml"));
 			transformer.transform(source, result);

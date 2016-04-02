@@ -11,23 +11,27 @@ public class SpatialConstraint extends StyleElement{
 	private Attr type;
 	private Attr direction;
 	private Attr offset;
-	private Attr xconnector;
+	private Attr xconnectorAttribute;
 	private Attr priority;
+	
+	private ConstraintConnector xconnector;
 	
 	private LinkedList<Bind> bindings = new LinkedList<Bind>();
 	
 	public SpatialConstraint(Document DOM, String id){
-		super(DOM, "spatialConstraint");
+		super(DOM, StyleElementTag.SPATIAL_CONSTRAINT);
 		this.id.setValue(id);
 		this.element.setAttributeNode(this.id);
+		this.element.setIdAttributeNode(this.id, true);
 	}
 	
+	@Override
 	protected void createAllAttributes(){
 		this.id = DOM.createAttribute("id");
 		this.type = DOM.createAttribute("type");
 		this.direction = DOM.createAttribute("direction");
 		this.offset = DOM.createAttribute("offset");
-		this.xconnector = DOM.createAttribute("xconnector");
+		this.xconnectorAttribute = DOM.createAttribute("xconnector");
 		this.priority = DOM.createAttribute("priority");
 	}
 	
@@ -71,18 +75,27 @@ public class SpatialConstraint extends StyleElement{
 		return Integer.parseInt(this.direction.getValue());
 	}
 	
-	public void setXconnector(String value){
-		this.xconnector.setValue(value);
-		this.element.setAttributeNode(this.xconnector);
+	private void setXConnectorAttribute(String value){
+		this.xconnectorAttribute.setValue(value);
+		this.element.setAttributeNode(this.xconnectorAttribute);
 	}
 	
-	public String getXconnector(){
-		return this.xconnector.getValue();
+	public String getXConnectorAttribute(){
+		return this.xconnectorAttribute.getValue();
 	}
 	
 	public void setPriority(String priority){
 		this.priority.setValue(priority);
 		this.element.setAttributeNode(this.priority);
+	}
+	
+	public void setXConnector(ConstraintConnector connector){
+		this.xconnector = connector;
+		setXConnectorAttribute(connector.getId());
+	}
+	
+	public ConstraintConnector getXConnector(){
+		return this.xconnector;
 	}
 
 }
