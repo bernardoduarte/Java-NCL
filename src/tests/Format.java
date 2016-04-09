@@ -30,6 +30,8 @@ public class Format extends StyleElement{
 		this.width = DOM.createAttribute("width");
 		this.height = DOM.createAttribute("height");
 		this.align = DOM.createAttribute("align");
+		this.columns = DOM.createAttribute("columns");
+		this.rows = DOM.createAttribute("rows");
 		this.vspace = DOM.createAttribute("vspace");
 		this.hspace = DOM.createAttribute("hspace");
 	}

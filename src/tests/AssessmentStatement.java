@@ -36,8 +36,8 @@ public class AssessmentStatement extends StyleElement {
 		}
 	}
 	
-	public void setComparator(String comparator){
-		this.comparator.setValue(comparator);
+	public void setComparator(AssessmentStatementComparator comparator){
+		this.comparator.setValue(AssessmentStatementComparator.getComparatorOf(comparator));
 	}
 	
 	public String getComparator(){

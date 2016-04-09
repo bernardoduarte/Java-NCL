@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<layout id="LayoutAppExAmple">
+  <head>
+    <constraintConnectorBase alias="const" documentURI="constraint.xml"/>
+  </head>
+  <body id="body">
+    <container focusIndex="1" id="menu" type="gridLayout">
+      <format columns="1" height="400" hspace="0" left="0" rows="4" top="0" vspace="0" width="100"/>
+    </container>
+    <container focusIndex="1" id="grid" type="gridLayout">
+      <format columns="4" height="500" hspace="0" rows="3" vspace="0" width="600"/>
+    </container>
+    <container focusIndex="1" id="info" type="flowLayout">
+      <format height="600" hspace="0" vspace="0" width="300"/>
+      <item height="600" id="item1" width="300"/>
+    </container>
+    <container focusIndex="1" id="videos" type="flowLayout">
+      <format height="400" hspace="0" vspace="10" width="1000"/>
+      <item height="400" id="item1" width="200"/>
+    </container>
+    <spatialConstraint direction="horizontal" id="dist1" type="distribute">
+      <bind component="menu" interface="right"/>
+      <bind component="grid" interface="right"/>
+      <bind component="info" interface="right"/>
+    </spatialConstraint>
+    <spatialConstraint id="align1" type="align">
+      <bind component="menu" interface="top"/>
+      <bind component="grid" interface="top"/>
+      <bind component="info" interface="top"/>
+    </spatialConstraint>
+    <spatialConstraint id="align2" type="align">
+      <bind component="menu" interface="left"/>
+      <bind component="videos" interface="left"/>
+    </spatialConstraint>
+    <spatialConstraint id="align3" offset="50" type="align">
+      <bind component="info" interface="bottom"/>
+      <bind component="videos" interface="top"/>
+    </spatialConstraint>
+  </body>
+</layout>
