@@ -1,25 +1,23 @@
-package tests;
+package style;
 
 import java.util.LinkedList;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 
-public class ConstraintConnector extends StyleElement {
-	
+public class Body extends StyleElement {
+
 	private Attr id;
 	
-	private ConnectorParam connectorParam;
+	private LinkedList<StyleElement> children = new LinkedList<StyleElement>();
 	
-	private LinkedList<StyleElement> statements = new LinkedList<StyleElement>();
-	
-	public ConstraintConnector(Document DOM, String id){
-		super(DOM, StyleElementTag.CONSTRAINT_CONNECTOR);
+	public Body(Document DOM, String id){
+		super(DOM, StyleElementTag.BODY);
 		this.id.setValue(id);
 		this.element.setAttributeNode(this.id);
 		this.element.setIdAttributeNode(this.id, true);
 	}
-
+	
 	@Override
 	protected void createAllAttributes() {
 		this.id = DOM.createAttribute("id");
@@ -27,14 +25,14 @@ public class ConstraintConnector extends StyleElement {
 	
 	public void appendChild(StyleElement newChild){
 		boolean hasChild = false;
-		for(StyleElement currentChild: statements){
+		for(StyleElement currentChild: children){
 			if(currentChild == newChild){
 				System.out.println("Child "+newChild.getElement().getTagName()+" "+newChild.getElement().getAttribute("id")+" Already Exists.");
 				hasChild = true;
 			}
 		}
 		if(!hasChild){
-			statements.push(newChild);
+			children.push(newChild);
 			this.element.appendChild(newChild.getElement());
 		}
 	}
@@ -45,15 +43,6 @@ public class ConstraintConnector extends StyleElement {
 	
 	public String getId(){
 		return this.id.getValue();
-	}
-	
-	public void setConnectorParam(String name){
-		this.connectorParam = new ConnectorParam(DOM, name);
-		this.element.appendChild(this.connectorParam.getElement());
-	}
-	
-	public ConnectorParam getConnectorParam(){
-		return this.connectorParam;
 	}
 
 }

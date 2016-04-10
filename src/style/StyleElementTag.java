@@ -1,4 +1,4 @@
-package tests;
+package style;
 
 public enum StyleElementTag {
 	

@@ -7,11 +7,20 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+
+import style.Bind;
+import style.Body;
+import style.ConstraintConnectorBase;
+import style.Container;
+import style.ContainerLayout;
+import style.Format;
+import style.Head;
+import style.Item;
+import style.Layout;
+import style.SpatialConstraint;
+
 import java.io.File;
-import java.util.Properties;
 
 public class CreateStyleFileTester {
 	
